@@ -9,9 +9,8 @@
 | `wmpost.py` (water meter post) | показания счётчиков воды | [system=SN](https://mgn-city.ru/TransferReadings/Account?system=SN) |
 | `elpost.py` (electricity post) | показания счётчика электроэнергии, ООО «МЭК» | [system=PS, МЭК](https://mgn-city.ru/TransferReadings/Account?system=PS&serviceCode=147&providerId=5&groupId=15) |
 | `gaspost.py` (gas post) | показания счётчика газа, ООО «НОВАТЭК-Челябинск» | [system=PS, НОВАТЭК](https://mgn-city.ru/TransferReadings/Account?system=PS&serviceCode=4&providerId=6&groupId=1) |
-
-Общий код всех скриптов лежит в `mgncity.py`. Этот файл должен находиться в той же папке.
-Нужен только Python 3.9+ (сторонние библиотеки не используются).
+                          
+Все команды далее даны для примера. **Для корректной отправке не забудьте подставить свой номер лицевого счета и идентификатор счетчика.**
 
 ## Запуск вручную
 
@@ -44,8 +43,8 @@
 
 | Сенсор Home Assistant | Скрипт | Счётчик на сайте |
 |---|---|---|
-| `sensor.waterius_12345678_ch0` | `wmpost.py` | № 25-1111122 (ГВС) |
-| `sensor.waterius_12345678_ch1` | `wmpost.py` | № 25-2222233 (ХВС) |
+| `sensor.waterius_12345678_ch0`— **замените на свой** | `wmpost.py` | № 25-1111122 (ГВС) |
+| `sensor.waterius_12345678_ch1`— **замените на свой** | `wmpost.py` | № 25-2222233 (ХВС) |
 | `sensor.electricity_meter` — **замените на свой** | `elpost.py` | № 01111111111100000 |
 | `sensor.gas_meter` — **замените на свой** | `gaspost.py` | «Газ» (первый счётчик на счёте) |
 
@@ -84,6 +83,8 @@ shell_command: {
   "gaspost": "python3 /config/mgnreadings/gaspost.py -account 1234567 {% set gas = states('sensor.gas_meter') %}{% if gas | is_number %} -meter {{ gas | float | round(0, 'floor') | int }}{% endif %}{% if dry_run is defined and dry_run %} --dry-run{% endif %}"
 }
 ```
+        
+**!!!Не забудьте исправить номера лицевых счетов и идентификаторы счетчиков в командах!!!**
 
 `configuration.yaml` остаётся YAML-файлом, поэтому ключ `shell_command:` пишется как в YAML, а
 его значение — в JSON. Если `shell_command:` в файле уже есть, добавьте строки `"wmpost": "…"`,
