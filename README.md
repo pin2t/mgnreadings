@@ -10,7 +10,7 @@
 | `elpost.py` (electricity post) | показания счётчика электроэнергии, ООО «МЭК» | [system=PS, МЭК](https://mgn-city.ru/TransferReadings/Account?system=PS&serviceCode=147&providerId=5&groupId=15) |
 | `gaspost.py` (gas post) | показания счётчика газа, ООО «НОВАТЭК-Челябинск» | [system=PS, НОВАТЭК](https://mgn-city.ru/TransferReadings/Account?system=PS&serviceCode=4&providerId=6&groupId=1) |
                           
-Все команды далее даны для примера. **Для корректной отправке не забудьте подставить свой номер лицевого счета и идентификатор счетчика.**
+Все команды далее даны для примера. **Чтобы данные отправились корректно не забудьте подставить свой номер лицевого счета и идентификатор счетчика.**
 
 ## Запуск вручную
 
